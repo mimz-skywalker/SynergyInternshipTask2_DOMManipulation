@@ -3,20 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <script src = "CalendatScript.js" ></script> 
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <div class = "calendar" >
         <ul class = "header">
-            <li class = "prev">
+            <li id = "prev">
                <button type ="button"> Prev </button>
             </li>>
-            <li class = "next">
+            <li id = "next">
                 <button type = "button "> Next </button>
             </li>
-            <li class = "current"> Current Selection </li>
+            <li id = "current"> Current Selection </li>
         </ul>
-        <div class = "month">
+        <div class = "weekdays">
+            <ul>
+                <li>
+                    Mon
+                </li>
+                <li>
+                    Tue
+                </li>
+                <li>
+                    Wed
+                </li>
+                <li>
+                    Thu
+                </li>
+                <li>
+                    Fri
+                </li>
+                <li>
+                    Sat
+                </li>
+                <li>
+                    Sun
+                </li>
+            </ul>
+        </div>
+        <div class = "months">
             <ul>
                 <li>
                     January
@@ -53,31 +80,6 @@
                 </li>
                 <li>
                     December
-                </li>
-            </ul>
-        </div>
-        <div class = "weekday">
-            <ul>
-                <li>
-                    Mon
-                </li>
-                <li>
-                    Tue
-                </li>
-                <li>
-                    Wed
-                </li>
-                <li>
-                    Thu
-                </li>
-                <li>
-                    Fri
-                </li>
-                <li>
-                    Sat
-                </li>
-                <li>
-                    Sun
                 </li>
             </ul>
         </div>
