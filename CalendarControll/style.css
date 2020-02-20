@@ -1,15 +1,47 @@
-.header{
+body ul {
     list-style: none;
+
 }
 
 .header{
-    list-style: none;
-}
-
-.weekdays{
-    list-style: none;
+    display: inline-block;
+    margin: 5%;
+    padding: 5%;
 }
 
 .months{
-    list-style: none;
+    display: inline;
 }
+
+.weekdays{
+    display: inline;
+    
+}
+
+th{
+    display: inline;
+    margin: 5%;
+    padding: 5%;
+    color: chartreuse;
+}
+
+#prev{
+    display: inline;
+    margin: 5px;
+    padding: 70px 25px;
+}
+
+#next{
+    display: inline;
+    margin: 10px;
+    padding: 20px 20px;
+}
+
+#current{
+    display: inline-block;
+    margin: 10px;
+    padding: 20px 20px;
+}
+
+
+
