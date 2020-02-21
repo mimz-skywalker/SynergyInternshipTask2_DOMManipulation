@@ -1,112 +1,141 @@
-function loadFunction(){
-    var selectedDate;
+function loadFunction() {
 
-var currentDate = new Date();
+    var currentDate = new Date();
+
+    var months = [
+        { id: 0, name: "January" },
+        { id: 1, name: "February" },
+        { id: 2, name: "March" },
+        { id: 3, name: "April" },
+        { id: 4, name: "May" },
+        { id: 5, name: "June" },
+        { id: 6, name: "July" },
+        { id: 7, name: "August" },
+        { id: 8, name: "September" },
+        { id: 9, name: "October" },
+        { id: 10, name: "November" },
+        { id: 11, name: "December" }
+    ];
+
+    var days = ['Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+        'Sun'];
 
 
-var months = ['January', 
-              'February',
-              'March',
-              'June',
-              'July',
-              'August',
-              'September',
-              'October',
-              'November',
-              'December'];
+    function loadmonthView() {
 
-var days = ['Mon',
-            'Tue',
-            'Wed',
-            'Thu',
-            'Fri',
-            'Sat',
-            'Sun'];
-
-
-    function loadmonthView(){
-        
     }
-    
-    function loadweekView(){
-}
 
-    function fillDays(){
+    function loadweekView() {
+    }
 
-        var dateStart = new Date();
+    function fillDays() {
 
-        var firstDay = 1;
-        var lastDay;
-        
-
-        var m = months[dateStart.getMonth()];
+        var m = months[currentDate.getMonth()];
         var indexOfM = months.indexOf(m);
 
-        //window.location.reload();
+        //Getting the month and writing its name
+        for (var i = 0; i < 12; i++) {
+            if (indexOfM == months[i].id) {
+                var selectionTag = document.getElementById("current");
+                var selectionTitle = months[i].name;
+
+                selectionTag.append(selectionTitle.toString());
+            }
+        }
+
+        var firstDay;
+        var lastDay;
+
 
         var bigMonthCheck = (indexOfM == 0) ||
-                            (indexOfM == 2) ||
-                            (indexOfM == 4) ||
-                            (indexOfM == 6) ||
-                            (indexOfM == 7) ||
-                            (indexOfM == 9) ||
-                            (indexOfM == 11);
+            (indexOfM == 2) ||
+            (indexOfM == 4) ||
+            (indexOfM == 6) ||
+            (indexOfM == 7) ||
+            (indexOfM == 9) ||
+            (indexOfM == 11);
 
-        //window.location.reload();
-        
+
+
         var smallMonthCheck = (indexOfM == 3) ||
-                              (indexOfM == 5) ||
-                              (indexOfM == 8) ||
-                              (indexOfM == 10);
+            (indexOfM == 5) ||
+            (indexOfM == 8) ||
+            (indexOfM == 10);
 
-        //location.reload();
+
 
         var isFebruary = (indexOfM == 1);
 
-        
+        //TODO: month should srtart from the actual startdate                    
+        var temp = new Date();
+        temp.setDate(1);
 
-        if(bigMonthCheck)
-        {
-            for(var i = 1; i  <= 31; i++)
-            {
-                var tdTag = document.getElementById(i.toString());
-                var content = document.createTextNode(i.toString());
+        firstDay = temp.getDay();
+        //var dayOfTheWeek = days[firstDay];
 
-                tdTag.append(content);
-
-            }
-        }
-        
-        if(smallMonthCheck)
-        {
-            for(var i = 1; i <= 30; i++)
-            {
-                var tdTag = document.getElementById(i.toString());
-                var content = document.createTextNode(i.toString());
-
-                tdTag.append(content);
-            }
+        if (bigMonthCheck) {
+            lastDay = 31;
         }
 
-        if(isFebruary)
-        {
-            for(var i = 1; i <= 28; i++)
-            {
-                var tdTag = document.getElementById(i.toString());
-                var content = document.createTextNode(i.toString());
+        if (smallMonthCheck) {
+            lastDay = 30;
+        }
 
-                tdTag.append(content);
+        if (isFebruary) {
+
+            if(currentDate.getFullYear()%400 == 0 || currentDate.getFullYear()%4 == 0)
+            {
+                lastDay = 29;
+            }
+            else
+            {
+                lastDay = 28;
             }
         }
 
-    };
 
+        for (var i = firstDay, z = 1; i <= lastDay, z<= lastDay; i++, z++) {
 
+            var tdTag = document.getElementById(i.toString());
+            var content = document.createTextNode(z.toString());
+
+            tdTag.append(content);
+
+            //Highlighting today
+            var today = currentDate.getDate();
+            var todayTag = document.getElementById((today+firstDay-1).toString());
+            todayTag.style.backgroundColor = "#ffa64d";
+
+        }
+
+    }
+    
     var functionCall = fillDays();
+
+};
+
+/*document.getElementById("btnPrev").addEventListener("click", function () {
+
+    window.location.reload();
+})
+
+document.getElementById("btnNext").addEventListener("click", function () {
+
+    window.location.reload();
+
+})*/
+
+
+        
     
-}
 
 
 
-    
+
+
 
