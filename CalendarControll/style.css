@@ -3,11 +3,29 @@ body ul {
 
 }
 
-.header{
-    display: inline-block;
-    margin: 5%;
-    padding: 5%;
+table{
+    position: absolute;
+    
 }
+
+th{
+    position: relative;
+    width: 5%;
+    margin: 3%;
+    padding: 3%;
+    margin-right: 1%;
+    color: chartreuse;
+}
+
+td{
+    position: relative;
+    width: 5%;
+    margin: 3%;
+    padding: 3%;
+    margin-right: 1%;
+    color: darkcyan;
+}
+
 
 .months{
     display: inline;
@@ -18,12 +36,6 @@ body ul {
     
 }
 
-th{
-    display: inline;
-    margin: 5%;
-    padding: 5%;
-    color: chartreuse;
-}
 
 #prev{
     display: inline;

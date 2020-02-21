@@ -1,6 +1,8 @@
-var selectedDate;
+function loadFunction(){
+    var selectedDate;
 
 var currentDate = new Date();
+
 
 var months = ['January', 
               'February',
@@ -29,13 +31,18 @@ var days = ['Mon',
     function loadweekView(){
 }
 
-    function fillDays(currentDate){
+    function fillDays(){
+
+        var dateStart = new Date();
 
         var firstDay = 1;
         var lastDay;
+        
 
-        var m = months[currentDate.getMonth()];
+        var m = months[dateStart.getMonth()];
         var indexOfM = months.indexOf(m);
+
+        //window.location.reload();
 
         var bigMonthCheck = (indexOfM == 0) ||
                             (indexOfM == 2) ||
@@ -44,20 +51,29 @@ var days = ['Mon',
                             (indexOfM == 7) ||
                             (indexOfM == 9) ||
                             (indexOfM == 11);
+
+        //window.location.reload();
+        
         var smallMonthCheck = (indexOfM == 3) ||
                               (indexOfM == 5) ||
                               (indexOfM == 8) ||
                               (indexOfM == 10);
+
+        //location.reload();
+
         var isFebruary = (indexOfM == 1);
+
+        
 
         if(bigMonthCheck)
         {
             for(var i = 1; i  <= 31; i++)
             {
-                var tdTag = document.getElementById(i);
+                var tdTag = document.getElementById(i.toString());
                 var content = document.createTextNode(i.toString());
 
-                tdTag.appendChild(content);
+                tdTag.append(content);
+
             }
         }
         
@@ -65,10 +81,10 @@ var days = ['Mon',
         {
             for(var i = 1; i <= 30; i++)
             {
-                var tdTag = document.getElementById(i);
+                var tdTag = document.getElementById(i.toString());
                 var content = document.createTextNode(i.toString());
 
-                tdTag.appendChild(content);
+                tdTag.append(content);
             }
         }
 
@@ -76,11 +92,21 @@ var days = ['Mon',
         {
             for(var i = 1; i <= 28; i++)
             {
-                var tdTag = document.getElementById(i);
+                var tdTag = document.getElementById(i.toString());
                 var content = document.createTextNode(i.toString());
 
-                tdTag.appendChild(content);
+                tdTag.append(content);
             }
         }
 
     };
+
+
+    var functionCall = fillDays();
+    
+}
+
+
+
+    
+
