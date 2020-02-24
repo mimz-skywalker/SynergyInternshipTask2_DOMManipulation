@@ -1,6 +1,8 @@
 function loadFunction() {
 
     var currentDate = new Date();
+    var countPrev = 0;
+    var countNext = 0;
 
     var months = [
         { id: 0, name: "January" },
@@ -33,50 +35,54 @@ function loadFunction() {
     function loadweekView() {
     }
 
-    function fillDays() {
+    function fillDays(myDate) {
 
-        var m = months[currentDate.getMonth()];
-        var indexOfM = months.indexOf(m);
+        var today = myDate.getDate();
 
         //Getting the month and writing its name
-        for (var i = 0; i < 12; i++) {
-            if (indexOfM == months[i].id) {
-                var selectionTag = document.getElementById("current");
-                var selectionTitle = months[i].name;
+        var month = myDate.getMonth() // Number 0-11
+        var selectionTitle = months[month].name;
+        var selectionYear = myDate.getFullYear();
 
-                selectionTag.append(selectionTitle.toString());
-            }
-        }
+        var selectionTag = document.getElementById("current");
+        selectionTag.append(selectionTitle.toString() + " " + selectionYear.toString());
 
         var firstDay;
         var lastDay;
 
 
-        var bigMonthCheck = (indexOfM == 0) ||
-            (indexOfM == 2) ||
-            (indexOfM == 4) ||
-            (indexOfM == 6) ||
-            (indexOfM == 7) ||
-            (indexOfM == 9) ||
-            (indexOfM == 11);
+        var bigMonthCheck = (month == 0) ||
+            (month == 2) ||
+            (month == 4) ||
+            (month == 6) ||
+            (month== 7) ||
+            (month == 9) ||
+            (month == 11);
 
 
 
-        var smallMonthCheck = (indexOfM == 3) ||
-            (indexOfM == 5) ||
-            (indexOfM == 8) ||
-            (indexOfM == 10);
+        var smallMonthCheck = (month == 3) ||
+            (month == 5) ||
+            (month == 8) ||
+            (month == 10);
 
 
 
-        var isFebruary = (indexOfM == 1);
-
-        //TODO: month should srtart from the actual startdate                    
-        var temp = new Date();
+        var isFebruary = (month == 1);
+              
+        var temp = myDate;
         temp.setDate(1);
 
-        firstDay = temp.getDay();
-        //var dayOfTheWeek = days[firstDay];
+        tempDay = temp.getDay();
+
+        if(tempDay==0)
+        {
+            firstDay = 7;
+        }
+        else
+        {
+            firstDay = tempDay;
+        }
 
         if (bigMonthCheck) {
             lastDay = 31;
@@ -88,7 +94,7 @@ function loadFunction() {
 
         if (isFebruary) {
 
-            if(currentDate.getFullYear()%400 == 0 || currentDate.getFullYear()%4 == 0)
+            if(myDate.getFullYear()%400 == 0 || myDate.getFullYear()%4 == 0)
             {
                 lastDay = 29;
             }
@@ -99,36 +105,59 @@ function loadFunction() {
         }
 
 
-        for (var i = firstDay, z = 1; i <= lastDay, z<= lastDay; i++, z++) {
+        for (var i = firstDay, z = 1; i <= lastDay, z <= lastDay; i++, z++) {
 
             var tdTag = document.getElementById(i.toString());
             var content = document.createTextNode(z.toString());
-
-            tdTag.append(content);
+            tdTag.appendChild(content);
 
             //Highlighting today
-            var today = currentDate.getDate();
             var todayTag = document.getElementById((today+firstDay-1).toString());
             todayTag.style.backgroundColor = "#ffa64d";
 
         }
 
     }
-    
-    var functionCall = fillDays();
 
+
+    var functionCall = fillDays(currentDate);
+
+    function ClearTags(){
+
+        document.getElementById("current").innerHTML = "";
+
+        for(var i = 1; i < 36; i++)
+        {
+            document.getElementById(i.toString()).innerHTML = "";
+            document.getElementById(i.toString()).style.backgroundColor = "yellow"
+        }
+    }
+
+    document.getElementById("btnPrev").addEventListener("click", function () {
+
+
+        ++countPrev;
+        ClearTags();
+
+        var today = new Date(currentDate.getFullYear(), currentDate.getMonth()-countPrev, currentDate.getDate());
+        
+        fillDays(today);
+
+    })
+    
+    document.getElementById("btnNext").addEventListener("click", function () {
+
+        ++countNext;
+        ClearTags();
+
+        var today = new Date(currentDate.getFullYear(), (currentDate.getMonth()+countNext), currentDate.getDate());
+        
+        fillDays(today);
+    
+    })
+    
 };
 
-/*document.getElementById("btnPrev").addEventListener("click", function () {
-
-    window.location.reload();
-})
-
-document.getElementById("btnNext").addEventListener("click", function () {
-
-    window.location.reload();
-
-})*/
 
 
         
