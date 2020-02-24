@@ -75,6 +75,7 @@ function loadFunction() {
 
         tempDay = temp.getDay();
 
+        //Because getDay() returns 0 for Sunday, 1 for Monday and so on
         if(tempDay==0)
         {
             firstDay = 7;

@@ -49,6 +49,12 @@ td{
     display: inline;   
 }
 
+#weekView{
+    position: relative;
+    margin: 20%;
+    color: darkcyan;
+}
+
 
 
 
