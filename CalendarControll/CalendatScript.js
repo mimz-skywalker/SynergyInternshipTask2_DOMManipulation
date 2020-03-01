@@ -173,5 +173,41 @@ function loadFunction() {
         currentDate = today;
     
     })
+
+    document.getElementById("weekView").addEventListener("click", function() {
+
+        var dayOfTheWeek = currentDate.getDay();
+        var dateSelected = currentDate.getDate();
+
+        switch(dayOfTheWeek)
+        {
+
+        }
+
+    })
+
+    document.getElementById("display").addEventListener("click", function() {
+
+        var inputYear = document.getElementById("year").value;
+
+        if (isNaN(inputYear))
+        {
+            document.getElementById("year").value = "";
+            window.alert("Please enter a valid year!");
+        }
+        else if (inputYear < 1900 || inputYear > 2300)
+        {
+            document.getElementById("year").value= "";
+            window.alert("Please enter a number between 1900 and 2300!");
+        }
+        else
+        {
+            var newDate = currentDate;
+            newDate.setFullYear(inputYear);
+
+            ClearTags();
+            fillDays(newDate);
+        }
+    })
     
 };
