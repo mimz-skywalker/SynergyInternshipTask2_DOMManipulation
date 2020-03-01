@@ -1,8 +1,9 @@
+  
 function loadFunction() {
 
     var currentDate = new Date();
-    var countPrev = 0;
-    var countNext = 0;
+    //var countPrev = 0;
+    //var countNext = 0;
 
     var months = [
         { id: 0, name: "January" },
@@ -92,7 +93,9 @@ function loadFunction() {
         if (smallMonthCheck) {
             lastDay = 30;
         }
+        
 
+        //leap year check
         if (isFebruary) {
 
             if(myDate.getFullYear()%400 == 0 || myDate.getFullYear()%4 == 0)
@@ -118,6 +121,16 @@ function loadFunction() {
 
         }
 
+        //To hide the last row if not needed
+        if (firstDay + lastDay <= 36)
+        {
+            document.getElementById("week6").style.display = "none";
+        }
+        else
+        {
+            document.getElementById("week6").style.display = "table-row";
+        }
+
     }
 
 
@@ -127,7 +140,7 @@ function loadFunction() {
 
         document.getElementById("current").innerHTML = "";
 
-        for(var i = 1; i < 36; i++)
+        for(var i = 1; i < 42; i++)
         {
             document.getElementById(i.toString()).innerHTML = "";
             document.getElementById(i.toString()).style.backgroundColor = "yellow"
@@ -137,36 +150,28 @@ function loadFunction() {
     document.getElementById("btnPrev").addEventListener("click", function () {
 
 
-        ++countPrev;
+        //++countPrev;
         ClearTags();
 
-        var today = new Date(currentDate.getFullYear(), currentDate.getMonth()-countPrev, currentDate.getDate());
+        var today = new Date(currentDate.getFullYear(), currentDate.getMonth()-1, currentDate.getDate());
         
         fillDays(today);
+
+        currentDate = today;
 
     })
     
     document.getElementById("btnNext").addEventListener("click", function () {
 
-        ++countNext;
+        //++countNext;
         ClearTags();
 
-        var today = new Date(currentDate.getFullYear(), currentDate.getMonth()+countNext, currentDate.getDate());
+        var today = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, currentDate.getDate());
         
         fillDays(today);
+
+        currentDate = today;
     
     })
     
 };
-
-
-
-
-        
-    
-
-
-
-
-
-

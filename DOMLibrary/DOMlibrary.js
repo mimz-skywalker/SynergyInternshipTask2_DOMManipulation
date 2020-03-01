@@ -22,14 +22,11 @@
         //creating a new element
         MyLibrary.addNew = function() {
 
-            var newElement = 
+            //var newElement = 
 
         }
 
 
-
-
-
         return defineDOMLibrary;
-    //}
-//});
+    }
+});
